@@ -1,9 +1,5 @@
 from lib.categories import Category
 from lib.categories import ChildCategory
-from lib.character import Character
-from lib.character import OtherCharacter
-import lib.color
-import lib.config
 
 def clearConsole():
     print("\n\n", end="")
