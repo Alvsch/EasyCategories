@@ -89,7 +89,7 @@
 	c0 = Category(0, "Help")
 	c1 = Category(0, "Exit")
 
-
+	#Setting Functions
 	c0.setFunc(help_func)  # DO NOT HAVE () IN THE END OF THE FUNCTION, JUST THE NAME
 	c1.setFunc(lambda: exit()) # Simple lambda expression
 
