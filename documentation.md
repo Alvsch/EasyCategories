@@ -6,6 +6,7 @@
 ## Creating Categories
 	# Id is used to for you to identify a category (Set to any integer if you dont use it)
 	# Titel is the text displayed when the user is inputing
+	
 	category0 = Category(id, title)
 	
 ## Attributes
@@ -22,6 +23,7 @@
 ## Creating Child Categories
 	# Id is used to for you to identify a category (Set to any integer if you dont use it)
 	# Titel is the text displayed when the user is inputing
+	
 	ChildCategory0 = ChildCategory(id, title)
 	
 ## Attributes
@@ -35,23 +37,101 @@
 	ChildCategory0.callFunc() # Calls the function defined by the setFunc() function
 	
 ## Selection
-	selection(c0, c1, c2) # Enter an unlimited amount of categories, The user can select from them and you can handle the action
+	# Enter an unlimited amount of categories, The user can select from them and you can handle the action
+	
+	selection(c0, c1, c2) 
 	
 	
-	
-## Examples With
+## Basic Example
 	from categories import *
-	from selection
+	
+	
+	#Defining Categories
+	c0 = Category(0, "Help")
+	c1 = Category(0, "Exit")
+	
+	
+	while True:
+		selected_category = selection(c0, c1)
+		print(selected_category.name)
+		
+### Output
+
+	[0] Help
+	[1] Exit
+
+	Select Action: 0
+	Help
+
+
+	[0] Help
+	[1] Exit
+
+	Select Action: 1
+	Exit
+
+
+	[0] Help
+	[1] Exit
+
+	Select Action: 
+			
+## Example With Functions
+	from categories import *
+
+
+	# Defining Functions
+	def help_func():
+	    print("This is a really bad help menu, don't make menus like these")
+
+
+	# Defining Categories
+	c0 = Category(0, "Help")
+	c1 = Category(0, "Exit")
+
+
+	c0.setFunc(help_func)  # DO NOT HAVE () IN THE END OF THE FUNCTION, JUST THE NAME
+	c1.setFunc(lambda: exit()) # Simple lambda expression
+
+
+	while True:
+	    selected_category = selection(c0, c1)
+	    selected_category.callFunc() # Call the function instead of printing name
+		
+### Output
+
+	[0] Help
+	[1] Exit
+
+	Select Action: 0
+	This is a really bad help menu, don't make menus like these
+
+
+	[0] Help
+	[1] Exit
+
+	Select Action: 1
+
+	Process finished with exit code 0
+
+
+## Example With Childs
+	from categories import *
+	
 	
 	# Defining Functions
 	def not_coders():
 		print("Also Alvsch")
+		
 	def help():
 		print("This is a really bad help menu, don't make menus like these")	
 	
+	
+	#Defining Categories
 	c0 = Category(0, "Help")
 	c1 = Category(0, "Credits")
 	c2 = Category(0, "Exit")
+	
 	
 	# Defining Children
 	cc0 = ChildCategory(0, "Coders")
@@ -60,35 +140,32 @@
 	cc0.setFunc(lambda: print("Alvsch"))
 	cc1.setFunc(not_coders) # DO NOT HAVE () IN THE END OF THE FUNCTION, JUST THE NAME
 
+
 	# Adding Children to the "c1" Category
 	c1.addChild(cc0)
 	c1.addChild(cc1)
 	
+	
 	# Setting Functions to Categories
 	c0.setFunc(help) # DO NOT HAVE () IN THE END OF THE FUNCTION, JUST THE NAME
+
 	# c1 Does not need a function because it has children and the function won't be called
-	c2.setFunc(lamda: exit())
+	
+	c2.setFunc(lambda: exit())
+	
 	
 	while True:
 		selected_category = selection(c0, c1, c2)
 		selected_category.callFunc()
 	
-## Output
-	[0] Help
-	[1] Credits
-	[2] Exit
-
-	Select Action: 0
-	This is a really bad help menu, don't make menus like these
-
-
+### Output
 	[0] Help
 	[1] Credits
 	[2] Exit
 
 	Select Action: 1
 	
-
+	
 	[0] Coders
 	[1] Not Coders
 
@@ -101,13 +178,14 @@
 	[2] Exit
 
 	Select Action: 1
-
+	
+	
 	[0] Coders
 	[1] Not Coders
 
 	Select Action: 1
 	Also Alvsch
-	
+
 
 	[0] Help
 	[1] Credits
