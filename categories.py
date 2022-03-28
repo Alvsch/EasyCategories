@@ -1,5 +1,6 @@
 import string
 
+
 # Copyright (c) 2022 Alvsch
 
 class Category:
@@ -125,10 +126,9 @@ def selection(*tuple_choices):
                 else:
                     req += x
             if not eval(req):
-                choices.remove(v)
-                print(f"Removed {v.name}")
+                choices.pop(index)
 
-        msg += f"[{index}] " + v.name + "\n"
+        msg += f"[{index}] " + choices[index].name + "\n"
         index += 1
     print(msg)
     while True:
