@@ -1,4 +1,6 @@
-#Copyright (c) 2022 Alvsch
+import string
+
+# Copyright (c) 2022 Alvsch
 
 class Category:
     def __init__(self, id, name, req=""):
@@ -67,11 +69,12 @@ class ChildCategory:
 
     def addChild(self, cc):
         self.children.append(cc)
+        cc = ChildCategory(cc)
         cc.setParent(self)
 
     def removeChild(self, cc):
         self.children.remove(cc)
-    
+
     def setParent(self, pc):
         self.parent = pc
 
@@ -103,16 +106,30 @@ class ChildCategory:
             print("FUNCTION IS NOT SET/CALLABLE")
             return None
 
-        
+
 def clearConsole():
     print("\n\n", end="")
 
 
-def selection(*choices):
+def selection(*tuple_choices):
+    choices = list(tuple_choices)
     msg = ""
+    index = 0
     for i, v in enumerate(choices):
-        msg += f"[{i}] " + v.name + "\n"
+        # Requirement Test
+        if v.req != "":
+            req = ""
+            for x in v.req.split(" "):
+                if x[0] in string.ascii_letters + "_":
+                    req += "\"" + x + "\""
+                else:
+                    req += x
+            if not eval(req):
+                choices.remove(v)
+                print(f"Removed {v.name}")
 
+        msg += f"[{index}] " + v.name + "\n"
+        index += 1
     print(msg)
     while True:
         number = input("Select Action: ")
