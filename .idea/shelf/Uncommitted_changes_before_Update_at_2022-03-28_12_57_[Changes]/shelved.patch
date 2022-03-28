@@ -1,0 +1,15 @@
+Index: categories.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n#Copyright (c) 2022 Alvsch\r\n\r\nclass Category:\r\n    def __init__(self, id, name, req=\"\"):\r\n        self.name = str(name)\r\n        self.id = int(id)\r\n        self.req = req\r\n\r\n        self.func = None\r\n\r\n        self.children = []\r\n\r\n    @property\r\n    def getName(self):\r\n        return self.name\r\n\r\n    def addChild(self, cc):\r\n        self.children.append(cc)\r\n        cc.setParent(self)\r\n\r\n    def removeChild(self, cc):\r\n        self.children.remove(cc)\r\n\r\n    @property\r\n    def hasChild(self):\r\n        if len(self.children) > 0:\r\n            return True\r\n        else:\r\n            return False\r\n\r\n    @property\r\n    def isChild(self):\r\n        return False\r\n\r\n    def setFunc(self, func):\r\n        if callable(func):\r\n            self.func = func\r\n        else:\r\n            print(\"ERROR, Func is not a callable\")\r\n        return self\r\n\r\n    def callFunc(self, *args):\r\n        if callable(self.func):\r\n            if len(args) > 0:\r\n                return self.func(*args)\r\n            else:\r\n                return self.func()\r\n        else:\r\n            print(\"FUNCTION IS NOT SET/CALLABLE\")\r\n            return None\r\n\r\n\r\nclass ChildCategory:\r\n    def __init__(self, id, name, req=\"\"):\r\n        self.name = str(name)\r\n        self.id = int(id)\r\n        self.req = req\r\n\r\n        self.func = None\r\n\r\n        self.parent = object\r\n        self.children = []\r\n\r\n    @property\r\n    def getName(self):\r\n        return self.name\r\n\r\n    def addChild(self, cc):\r\n        self.children.append(cc)\r\n        cc = ChildCategory(cc)\r\n        cc.setParent(self)\r\n\r\n    def removeChild(self, cc):\r\n        self.children.remove(cc)\r\n    \r\n    def setParent(self, pc):\r\n        self.parent = pc\r\n\r\n    @property\r\n    def hasChild(self):\r\n        if len(self.children) > 0:\r\n            return True\r\n        else:\r\n            return False\r\n\r\n    @property\r\n    def isChild(self):\r\n        return True\r\n\r\n    def setFunc(self, func):\r\n        if callable(func):\r\n            self.func = func\r\n        else:\r\n            print(\"ERROR, Func is not a callable\")\r\n        return self\r\n\r\n    def callFunc(self, *args):\r\n        if callable(self.func):\r\n            if len(args) > 0:\r\n                return self.func(*args)\r\n            else:\r\n                return self.func()\r\n        else:\r\n            print(\"FUNCTION IS NOT SET/CALLABLE\")\r\n            return None\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/categories.py b/categories.py
+--- a/categories.py	(revision db755ab87cf860c3815ed71499da3c939cbdd828)
++++ b/categories.py	(date 1648464891353)
+@@ -1,4 +1,3 @@
+-
+ #Copyright (c) 2022 Alvsch
+ 
+ class Category:
