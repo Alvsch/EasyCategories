@@ -1,5 +1,5 @@
 # Easy Categories
-
+# Copyright (c) 2022 Alvsch
 
 ## Importing Library
 ```python
@@ -56,6 +56,7 @@ selection(c0, c1, c2)
 
 ## Basic Example
 ```python
+Copyright (c) 2022 Alvsch
 from categories import *
 
 
@@ -92,6 +93,7 @@ while True:
 			
 ## Example With Functions
 ```python
+Copyright (c) 2022 Alvsch
 from categories import *
 
 
