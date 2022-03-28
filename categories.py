@@ -35,6 +35,7 @@ class Category:
             self.func = func
         else:
             print("ERROR, Func is not a callable")
+        return self
 
     def callFunc(self, *args):
         if callable(self.func):
@@ -64,13 +65,14 @@ class ChildCategory:
 
     def addChild(self, cc):
         self.children.append(cc)
+        cc = ChildCategory(cc)
         cc.setParent(self)
 
     def removeChild(self, cc):
         self.children.remove(cc)
-
-    def setParent(self, parent):
-        self.parent = parent
+    
+    def setParent(self, pc):
+        self.parent = pc
 
     @property
     def hasChild(self):
@@ -88,6 +90,7 @@ class ChildCategory:
             self.func = func
         else:
             print("ERROR, Func is not a callable")
+        return self
 
     def callFunc(self, *args):
         if callable(self.func):
@@ -98,27 +101,3 @@ class ChildCategory:
         else:
             print("FUNCTION IS NOT SET/CALLABLE")
             return None
-
-        
-        
-def clearConsole():
-    print("\n\n", end="")
-
-
-def selection(*choices):
-    msg = ""
-    for i, v in enumerate(choices):
-        msg += f"[{i}] " + v.name + "\n"
-
-    clearConsole()
-    print(msg)
-    while True:
-        number = input("Select Action: ")
-        if number.isnumeric():
-            if int(number) < len(choices):
-                choice = choices[int(number)]
-                if len(choice.children) > 0:
-                    return selection(*choice.children)
-                else:
-                    return choice
-        print("Not a valid choice")
