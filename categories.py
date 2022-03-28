@@ -1,6 +1,5 @@
 import string
 
-
 # Copyright (c) 2022 Alvsch
 
 class Category:
