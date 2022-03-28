@@ -134,6 +134,7 @@ while True:
 
 ## Example With Childs
 ```python
+# Copyright (c) 2022 Alvsch
 from categories import *
 
 
