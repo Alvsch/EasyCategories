@@ -1,3 +1,6 @@
+
+#Copyright (c) 2022 Alvsch
+
 class Category:
     def __init__(self, id, name, req=""):
         self.name = str(name)
