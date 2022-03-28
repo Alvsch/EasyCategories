@@ -132,7 +132,7 @@ while True:
 	Process finished with exit code 0
 
 
-## Example With Childs
+## Example With Children
 ```python
 # Copyright (c) 2022 Alvsch
 from categories import *
