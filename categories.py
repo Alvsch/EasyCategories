@@ -64,6 +64,7 @@ class ChildCategory:
 
     def addChild(self, cc):
         self.children.append(cc)
+        cc.setParent(self)
 
     def removeChild(self, cc):
         self.children.remove(cc)
